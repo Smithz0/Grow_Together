@@ -1,105 +1,64 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { 
-  Users, 
-  Clock, 
-  BookOpen, 
-  Star,
-  MapPin,
-  Calendar,
-  Plus
-} from "lucide-react";
+import { Users, Clock, BookOpen, MapPin, Star } from "lucide-react";
+import CreateGroupModal from "./modals/CreateGroupModal";
+import JoinGroupModal from "./modals/JoinGroupModal";
 
 const StudyGroups = () => {
-  const groups = [
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState<any>(null);
+
+  const studyGroups = [
     {
-      id: 1,
-      title: "Advanced Calculus Study Circle",
+      id: "1",
+      name: "Advanced Calculus Masters",
       subject: "Mathematics",
+      level: "Undergraduate",
       members: 8,
       maxMembers: 12,
-      rating: 4.9,
-      nextSession: "Tomorrow 7:00 PM",
-      location: "Virtual",
-      level: "Advanced",
-      description: "Tackling differential equations and integration techniques together.",
-      tags: ["Calculus", "Problem Solving", "Peer Teaching"]
+      meetingFrequency: "Twice Weekly",
+      location: "Online",
+      rating: 4.8,
+      tags: ["Problem Solving", "Exam Prep"],
+      description: "Focused on mastering advanced calculus concepts with weekly problem-solving sessions and exam preparation.",
+      nextMeeting: "Tomorrow 7:00 PM"
     },
     {
-      id: 2,
-      title: "Organic Chemistry Lab Partners",
-      subject: "Chemistry",
+      id: "2", 
+      name: "Physics Problem Solvers",
+      subject: "Physics",
+      level: "High School",
       members: 6,
-      maxMembers: 8,
-      rating: 4.8,
-      nextSession: "Today 3:00 PM",
-      location: "Library Room 204",
-      level: "Intermediate",
-      description: "Working through synthesis problems and reaction mechanisms.",
-      tags: ["Organic Chemistry", "Lab Work", "MCAT Prep"]
-    },
-    {
-      id: 3,
-      title: "Data Structures & Algorithms",
-      subject: "Computer Science",
-      members: 10,
-      maxMembers: 15,
-      rating: 4.7,
-      nextSession: "Wed 6:30 PM",
-      location: "Virtual",
-      level: "Intermediate",
-      description: "Coding practice sessions and technical interview preparation.",
-      tags: ["Programming", "Interviews", "Python", "Java"]
-    },
-    {
-      id: 4,
-      title: "Spanish Conversation Circle",
-      subject: "Languages",
-      members: 12,
-      maxMembers: 12,
-      rating: 4.9,
-      nextSession: "Fri 5:00 PM",
-      location: "Student Center",
-      level: "Beginner",
-      description: "Practice conversational Spanish in a supportive environment.",
-      tags: ["Speaking", "Grammar", "Culture"]
-    },
-    {
-      id: 5,
-      title: "Psychology Research Methods",
-      subject: "Psychology",
-      members: 7,
       maxMembers: 10,
-      rating: 4.6,
-      nextSession: "Mon 4:00 PM",
-      location: "Virtual",
-      level: "Advanced",
-      description: "Analyzing research papers and designing experiments together.",
-      tags: ["Research", "Statistics", "Writing"]
+      meetingFrequency: "Weekly",
+      location: "Hybrid",
+      rating: 4.9,
+      tags: ["Mechanics", "Thermodynamics"],
+      description: "Weekly physics problem-solving sessions covering mechanics, thermodynamics, and electromagnetism.",
+      nextMeeting: "Friday 3:00 PM"
     },
     {
-      id: 6,
-      title: "Business Case Study Group",
-      subject: "Business",
-      members: 9,
-      maxMembers: 12,
-      rating: 4.8,
-      nextSession: "Thu 7:00 PM",
-      location: "Business Building",
-      level: "Advanced",
-      description: "Harvard Business School case analysis and presentations.",
-      tags: ["Strategy", "Finance", "Marketing"]
+      id: "3",
+      name: "CS Algorithm Study Circle", 
+      subject: "Computer Science",
+      level: "Graduate",
+      members: 5,
+      maxMembers: 8,
+      meetingFrequency: "Weekly",
+      location: "Online",
+      rating: 4.7,
+      tags: ["Algorithms", "Data Structures"],
+      description: "Graduate-level study group focusing on advanced algorithms and data structures for technical interviews.",
+      nextMeeting: "Sunday 2:00 PM"
     }
   ];
 
-  const getLevelColor = (level: string) => {
-    switch (level) {
-      case "Beginner": return "bg-success/10 text-success";
-      case "Intermediate": return "bg-warning/10 text-warning";
-      case "Advanced": return "bg-accent/10 text-accent";
-      default: return "bg-muted/10 text-muted-foreground";
-    }
+  const handleJoinGroup = (group: any) => {
+    setSelectedGroup(group);
+    setJoinModalOpen(true);
   };
 
   return (
@@ -124,16 +83,18 @@ const StudyGroups = () => {
             and learning style for maximum productivity.
           </p>
 
-          <Button variant="hero" size="lg" className="group">
-            <Plus className="mr-2 h-5 w-5" />
-            Create New Group
-          </Button>
+          <div className="flex gap-4 justify-center">
+            <Button variant="hero" onClick={() => setCreateModalOpen(true)}>
+              Create New Group
+            </Button>
+            <Button variant="outline">Browse All Groups</Button>
+          </div>
         </div>
 
-        {/* Groups Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {groups.map((group) => (
-            <Card key={group.id} className="hover-lift border-0 shadow-elegant hover:shadow-glow transition-smooth group">
+        {/* Study Groups Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {studyGroups.map((group) => (
+            <Card key={group.id} className="glass border-white/20 hover:shadow-elegant transition-smooth group">
               <CardContent className="p-6">
                 <div className="space-y-4">
                   {/* Header */}
@@ -150,7 +111,7 @@ const StudyGroups = () => {
                   {/* Title and Description */}
                   <div>
                     <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-smooth">
-                      {group.title}
+                      {group.name}
                     </h3>
                     <p className="text-sm text-muted-foreground mb-3">
                       {group.description}
@@ -173,17 +134,17 @@ const StudyGroups = () => {
                       <span>{group.members}/{group.maxMembers} members</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <Badge className={`text-xs ${getLevelColor(group.level)}`}>
+                      <Badge variant="outline" className="text-xs">
                         {group.level}
                       </Badge>
                     </div>
                   </div>
 
-                  {/* Next Session */}
+                  {/* Next Meeting */}
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center space-x-2">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <span>{group.nextSession}</span>
+                      <Clock className="h-4 w-4 text-muted-foreground" />
+                      <span>{group.nextMeeting}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <MapPin className="h-4 w-4 text-muted-foreground" />
@@ -191,13 +152,19 @@ const StudyGroups = () => {
                     </div>
                   </div>
 
-                  {/* Action Button */}
-                  <Button 
-                    className="w-full" 
-                    variant={group.members === group.maxMembers ? "outline" : "default"}
-                  >
-                    {group.members === group.maxMembers ? "Join Waitlist" : "Join Group"}
-                  </Button>
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 pt-4">
+                    <Button 
+                      variant="hero" 
+                      className="flex-1"
+                      onClick={() => handleJoinGroup(group)}
+                    >
+                      Join Group
+                    </Button>
+                    <Button variant="outline" className="flex-1">
+                      View Details
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -211,6 +178,16 @@ const StudyGroups = () => {
           </Button>
         </div>
       </div>
+
+      <CreateGroupModal 
+        open={createModalOpen} 
+        onOpenChange={setCreateModalOpen} 
+      />
+      <JoinGroupModal 
+        open={joinModalOpen} 
+        onOpenChange={setJoinModalOpen}
+        group={selectedGroup}
+      />
     </section>
   );
 };

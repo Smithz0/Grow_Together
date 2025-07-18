@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { MessageCircle, Users, TrendingUp, Calendar, Heart, MessageSquare, Share2 } from "lucide-react";
+import NewPostModal from "@/components/modals/NewPostModal";
+import CreateGroupModal from "@/components/modals/CreateGroupModal";
 
 const Community = () => {
+  const [newPostModalOpen, setNewPostModalOpen] = useState(false);
+  const [createGroupModalOpen, setCreateGroupModalOpen] = useState(false);
   const discussions = [
     {
       id: 1,
@@ -96,10 +101,10 @@ const Community = () => {
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <Button className="w-full" variant="hero">
+                <Button className="w-full" variant="hero" onClick={() => setNewPostModalOpen(true)}>
                   Start Discussion
                 </Button>
-                <Button className="w-full" variant="outline">
+                <Button className="w-full" variant="outline" onClick={() => setCreateGroupModalOpen(true)}>
                   Find Study Group
                 </Button>
                 <Button className="w-full" variant="ghost">
@@ -113,7 +118,7 @@ const Community = () => {
           <div className="lg:col-span-3">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-primary">Recent Discussions</h2>
-              <Button variant="hero">New Post</Button>
+              <Button variant="hero" onClick={() => setNewPostModalOpen(true)}>New Post</Button>
             </div>
 
             <div className="space-y-6">
@@ -176,6 +181,15 @@ const Community = () => {
           </div>
         </div>
       </div>
+
+      <NewPostModal 
+        open={newPostModalOpen} 
+        onOpenChange={setNewPostModalOpen} 
+      />
+      <CreateGroupModal 
+        open={createGroupModalOpen} 
+        onOpenChange={setCreateGroupModalOpen} 
+      />
     </div>
   );
 };
