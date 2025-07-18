@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, BookOpen, Users, MessageCircle, BarChart3 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +9,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Features", href: "#features", icon: BookOpen },
     { name: "Study Groups", href: "#groups", icon: Users },
-    { name: "Community", href: "#community", icon: MessageCircle },
+    { name: "Community", href: "/community", icon: MessageCircle },
     { name: "Progress", href: "#progress", icon: BarChart3 },
   ];
 
@@ -40,7 +41,9 @@ const Navbar = () => {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost">Sign In</Button>
+            <Button variant="ghost" asChild>
+              <Link to="/signin">Sign In</Link>
+            </Button>
             <Button variant="hero" size="sm">Get Started</Button>
           </div>
 
@@ -71,7 +74,9 @@ const Navbar = () => {
               </a>
             ))}
             <div className="pt-4 border-t border-border space-y-2">
-              <Button variant="ghost" className="w-full">Sign In</Button>
+              <Button variant="ghost" className="w-full" asChild>
+                <Link to="/signin">Sign In</Link>
+              </Button>
               <Button variant="hero" className="w-full">Get Started</Button>
             </div>
           </div>
