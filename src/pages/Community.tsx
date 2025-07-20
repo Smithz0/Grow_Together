@@ -1,12 +1,11 @@
-import CreateGroupModal from "@/components/modals/CreateGroupModal";
-import NewPostModal from "@/components/modals/NewPostModal";
-import Navbar from "@/components/Navbar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Heart, MessageCircle, MessageSquare, Share2, TrendingUp, Users } from "lucide-react";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MessageCircle, Users, TrendingUp, Calendar, Heart, MessageSquare, Share2 } from "lucide-react";
+import NewPostModal from "@/components/modals/NewPostModal";
+import CreateGroupModal from "@/components/modals/CreateGroupModal";
 
 const Community = () => {
   const [newPostModalOpen, setNewPostModalOpen] = useState(false);
@@ -56,7 +55,6 @@ const Community = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
-      <Navbar />
       {/* Header */}
       <div className="glass border-b border-white/20 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

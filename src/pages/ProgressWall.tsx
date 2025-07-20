@@ -1,11 +1,10 @@
-import Navbar from "@/components/Navbar";
-import { Badge } from "@/components/ui/badge";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Award, Calendar, Clock, Flame, Medal, Target, TrendingUp, Trophy, Users } from "lucide-react";
-import { useState } from "react";
+import { Trophy, Medal, Star, Flame, Target, TrendingUp, Calendar, Users, BookOpen, Clock, Award, Zap } from "lucide-react";
 
 const ProgressWall = () => {
   const [selectedPeriod, setSelectedPeriod] = useState("week");
@@ -113,7 +112,6 @@ const ProgressWall = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-      <Navbar />
       <div className="container mx-auto px-4 py-8">
         
         {/* Header */}
