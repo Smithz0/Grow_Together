@@ -6,6 +6,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Community from "./pages/Community";
 import SignIn from "./pages/SignIn";
+import ChatDashboard from "./pages/ChatDashboard";
+import FlashcardGenerator from "./pages/FlashcardGenerator";
+import StudyKitRecommendations from "./pages/StudyKitRecommendations";
+import ExamPlanner from "./pages/ExamPlanner";
+import ProgressWall from "./pages/ProgressWall";
+import StudyRecap from "./pages/StudyRecap";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,6 +25,12 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/chat" element={<ChatDashboard />} />
+          <Route path="/flashcards" element={<FlashcardGenerator />} />
+          <Route path="/studykit" element={<StudyKitRecommendations />} />
+          <Route path="/planner" element={<ExamPlanner />} />
+          <Route path="/progress" element={<ProgressWall />} />
+          <Route path="/recap" element={<StudyRecap />} />
           <Route path="/signin" element={<SignIn />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
