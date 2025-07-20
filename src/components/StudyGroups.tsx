@@ -10,8 +10,8 @@ const StudyGroups = () => {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [joinModalOpen, setJoinModalOpen] = useState(false);
   const [selectedGroup, setSelectedGroup] = useState<any>(null);
-
-  const studyGroups = [
+  const [showAllGroups, setShowAllGroups] = useState(false);
+  const [studyGroups, setStudyGroups] = useState([
     {
       id: "1",
       name: "Advanced Calculus Masters",
@@ -54,7 +54,20 @@ const StudyGroups = () => {
       description: "Graduate-level study group focusing on advanced algorithms and data structures for technical interviews.",
       nextMeeting: "Sunday 2:00 PM"
     }
-  ];
+  ]);
+
+  const handleCreateGroup = (groupData: any) => {
+    const newGroup = {
+      id: String(studyGroups.length + 1),
+      members: 1,
+      rating: 5.0,
+      nextMeeting: "TBD",
+      ...groupData
+    };
+    setStudyGroups([...studyGroups, newGroup]);
+  };
+
+  const displayedGroups = showAllGroups ? studyGroups : studyGroups.slice(0, 6);
 
   const handleJoinGroup = (group: any) => {
     setSelectedGroup(group);
@@ -87,13 +100,15 @@ const StudyGroups = () => {
             <Button variant="hero" onClick={() => setCreateModalOpen(true)}>
               Create New Group
             </Button>
-            <Button variant="outline">Browse All Groups</Button>
+            <Button variant="outline" onClick={() => setShowAllGroups(!showAllGroups)}>
+              {showAllGroups ? "Show Less" : "Browse All Groups"}
+            </Button>
           </div>
         </div>
 
         {/* Study Groups Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {studyGroups.map((group) => (
+          {displayedGroups.map((group) => (
             <Card key={group.id} className="glass border-white/20 hover:shadow-elegant transition-smooth group">
               <CardContent className="p-6">
                 <div className="space-y-4">
@@ -172,16 +187,19 @@ const StudyGroups = () => {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
-          <Button variant="outline" size="lg">
-            View All Groups
-          </Button>
-        </div>
+        {!showAllGroups && studyGroups.length > 6 && (
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" onClick={() => setShowAllGroups(true)}>
+              View All {studyGroups.length} Groups
+            </Button>
+          </div>
+        )}
       </div>
 
       <CreateGroupModal 
         open={createModalOpen} 
         onOpenChange={setCreateModalOpen} 
+        onCreateGroup={handleCreateGroup}
       />
       <JoinGroupModal 
         open={joinModalOpen} 

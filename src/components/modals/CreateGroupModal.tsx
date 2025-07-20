@@ -10,9 +10,10 @@ import { useToast } from "@/hooks/use-toast";
 interface CreateGroupModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onCreateGroup?: (groupData: any) => void;
 }
 
-const CreateGroupModal = ({ open, onOpenChange }: CreateGroupModalProps) => {
+const CreateGroupModal = ({ open, onOpenChange, onCreateGroup }: CreateGroupModalProps) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -36,7 +37,22 @@ const CreateGroupModal = ({ open, onOpenChange }: CreateGroupModalProps) => {
       return;
     }
 
-    // Simulate group creation
+    // Create the group data object
+    const groupData = {
+      ...formData,
+      subject: formData.subject.charAt(0).toUpperCase() + formData.subject.slice(1).replace('-', ' '),
+      level: formData.level.charAt(0).toUpperCase() + formData.level.slice(1).replace('-', ' '),
+      meetingFrequency: formData.meetingFrequency.charAt(0).toUpperCase() + formData.meetingFrequency.slice(1).replace('-', ' '),
+      maxMembers: parseInt(formData.maxMembers) || 10,
+      location: "Online",
+      tags: ["New Group"]
+    };
+
+    // Call the callback to add the group
+    if (onCreateGroup) {
+      onCreateGroup(groupData);
+    }
+
     toast({
       title: "Group Created!",
       description: `"${formData.name}" has been created successfully. You can now invite members to join.`,
