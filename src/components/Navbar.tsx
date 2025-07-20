@@ -1,17 +1,27 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, BookOpen, Users, MessageCircle, BarChart3 } from "lucide-react";
+import { BarChart3, BookOpen, Calendar, ChevronDown, Layers, Menu, MessageCircle, Users, Video, X, Zap } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+
+const anchorLinks = [
+  { name: "Features", href: "#features", icon: BookOpen },
+  { name: "Study Groups", href: "#groups", icon: Users },
+  { name: "Progress", href: "#progress", icon: BarChart3 },
+];
+
+const studyTools = [
+  { name: "Community", href: "/community", icon: MessageCircle },
+  { name: "Chat", href: "/chat", icon: Users },
+  { name: "Flashcards", href: "/flashcards", icon: Zap },
+  { name: "StudyKit", href: "/studykit", icon: Layers },
+  { name: "Planner", href: "/planner", icon: Calendar },
+  { name: "Progress Wall", href: "/progress", icon: BarChart3 },
+  { name: "Recap", href: "/recap", icon: Video },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navItems = [
-    { name: "Features", href: "#features", icon: BookOpen },
-    { name: "Study Groups", href: "#groups", icon: Users },
-    { name: "Community", href: "/community", icon: MessageCircle },
-    { name: "Progress", href: "#progress", icon: BarChart3 },
-  ];
+  const [toolsOpen, setToolsOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/20">
@@ -27,7 +37,8 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {/* Anchor Links */}
+            {anchorLinks.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -37,6 +48,39 @@ const Navbar = () => {
                 <span>{item.name}</span>
               </a>
             ))}
+            {/* Study Tools Dropdown */}
+            <div className="relative group">
+              <button
+                className="flex items-center space-x-1 text-foreground hover:text-primary transition-smooth focus:outline-none"
+                onClick={() => setToolsOpen((open) => !open)}
+                onMouseEnter={() => setToolsOpen(true)}
+                onMouseLeave={() => setToolsOpen(false)}
+                type="button"
+              >
+                <Layers className="h-4 w-4" />
+                <span>Study Tools</span>
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {toolsOpen && (
+                <div
+                  className="absolute left-0 mt-2 w-56 bg-white rounded shadow-lg py-2 z-50"
+                  onMouseEnter={() => setToolsOpen(true)}
+                  onMouseLeave={() => setToolsOpen(false)}
+                >
+                  {studyTools.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="flex items-center gap-2 px-4 py-2 text-foreground hover:bg-gray-100 hover:text-primary transition-smooth"
+                      onClick={() => setToolsOpen(false)}
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Desktop Auth Buttons */}
@@ -62,7 +106,8 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isOpen && (
           <div className="md:hidden bg-white/95 backdrop-blur-lg rounded-lg mt-2 p-4 space-y-4 shadow-elegant">
-            {navItems.map((item) => (
+            {/* Anchor Links */}
+            {anchorLinks.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
@@ -73,6 +118,33 @@ const Navbar = () => {
                 <span>{item.name}</span>
               </a>
             ))}
+            {/* Collapsible Study Tools */}
+            <div>
+              <button
+                className="flex items-center space-x-2 w-full text-left text-foreground hover:text-primary transition-smooth py-2 focus:outline-none"
+                onClick={() => setToolsOpen((open) => !open)}
+                type="button"
+              >
+                <Layers className="h-4 w-4" />
+                <span>Study Tools</span>
+                <ChevronDown className={`h-4 w-4 transition-transform ${toolsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {toolsOpen && (
+                <div className="pl-4 mt-2 space-y-2">
+                  {studyTools.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      className="flex items-center gap-2 text-foreground hover:text-primary transition-smooth py-2"
+                      onClick={() => { setIsOpen(false); setToolsOpen(false); }}
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
             <div className="pt-4 border-t border-border space-y-2">
               <Button variant="ghost" className="w-full" asChild>
                 <Link to="/signin">Sign In</Link>
