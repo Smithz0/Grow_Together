@@ -1,9 +1,4 @@
 
-Ran tool
-Here’s a professional README template for your project, ready to post on GitHub:
-
----
-
 # GrowTogether
 
 **GrowTogether** is a collaborative learning platform that empowers students to connect, form study groups, track progress, and unlock their full learning potential through modern, intelligent study tools.
