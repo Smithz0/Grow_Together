@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="gradient-primary p-2 rounded-lg">
               <BookOpen className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-primary">StudyTogether</span>
+            <span className="text-xl font-bold text-primary">GrowTogether</span>
           </div>
 
           {/* Desktop Navigation */}

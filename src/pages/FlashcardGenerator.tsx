@@ -1,13 +1,14 @@
-import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Brain, Plus, RotateCcw, CheckCircle, XCircle, Sparkles, BookOpen, Target } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { BookOpen, Brain, CheckCircle, Plus, RotateCcw, Sparkles, Target, XCircle } from "lucide-react";
+import { useState } from "react";
 
 const FlashcardGenerator = () => {
   const [topic, setTopic] = useState("");
@@ -96,6 +97,7 @@ const FlashcardGenerator = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+      <Navbar />
       <div className="container mx-auto px-4 py-8">
         
         {/* Header */}

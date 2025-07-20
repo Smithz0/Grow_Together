@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  BookOpen, 
-  Twitter, 
-  Instagram, 
-  Youtube, 
-  Mail,
-  ArrowRight
+import {
+    ArrowRight,
+    BookOpen,
+    Instagram,
+    Mail,
+    Twitter,
+    Youtube
 } from "lucide-react";
 
 const Footer = () => {
@@ -78,7 +78,7 @@ const Footer = () => {
                 <div className="gradient-primary p-2 rounded-lg">
                   <BookOpen className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold">StudyTogether</span>
+                <span className="text-xl font-bold">GrowTogether</span>
               </div>
               <p className="text-background/70 mb-6 max-w-md">
                 Empowering students worldwide to achieve their academic goals through 

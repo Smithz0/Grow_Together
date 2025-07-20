@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import Navbar from "@/components/Navbar";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CalendarDays, Clock, Target, BookOpen, Brain, Plus, CheckCircle, AlertCircle, TrendingUp } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { BookOpen, Brain, CalendarDays, CheckCircle, Clock, Plus, Target, TrendingUp } from "lucide-react";
+import { useState } from "react";
 
 const ExamPlanner = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -109,6 +109,7 @@ const ExamPlanner = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+      <Navbar />
       <div className="container mx-auto px-4 py-8">
         
         {/* Header */}

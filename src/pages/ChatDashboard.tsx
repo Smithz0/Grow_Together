@@ -1,12 +1,12 @@
-import { useState } from "react";
+import Navbar from "@/components/Navbar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
-import { MessageCircle, Users, Video, Phone, Search, MoreVertical, Send, Paperclip, Smile } from "lucide-react";
+import { MessageCircle, MoreVertical, Paperclip, Phone, Search, Send, Smile, Users, Video } from "lucide-react";
+import { useState } from "react";
 
 const ChatDashboard = () => {
   const [selectedChat, setSelectedChat] = useState("1");
@@ -83,7 +83,8 @@ const ChatDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+    <div className="min-h-screen">
+      <Navbar />
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-12 h-[calc(100vh-8rem)] gap-6">
           

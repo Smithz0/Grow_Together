@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { BookOpen, Mail, Lock, Eye, EyeOff, Github } from "lucide-react";
+import { BookOpen, Eye, EyeOff, Github, Lock, Mail } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignIn = () => {
@@ -27,7 +27,7 @@ const SignIn = () => {
             <div className="gradient-primary p-3 rounded-xl">
               <BookOpen className="h-8 w-8 text-white" />
             </div>
-            <span className="text-2xl font-bold text-primary">StudyTogether</span>
+            <span className="text-2xl font-bold text-primary">GrowTogether</span>
           </div>
           <p className="text-muted-foreground">Welcome back to your learning journey</p>
         </div>
