@@ -1,14 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Users, BookOpen, Target, TrendingUp } from "lucide-react";
-
 const Landing = () => {
   const navigate = useNavigate();
-
-  return (
-    <div className="min-h-screen gradient-hero">
+  return <div className="min-h-screen gradient-hero">
       {/* Hero Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 bg-slate-100">
         <div className="text-center max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold gradient-primary bg-clip-text text-transparent mb-6">
             GrowTogether
@@ -18,19 +15,10 @@ const Landing = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button 
-              onClick={() => navigate("/signup-supabase")}
-              size="lg"
-              className="gradient-primary text-primary-foreground hover-glow px-8 py-6 text-lg font-semibold rounded-xl shadow-elegant transition-smooth"
-            >
+            <Button onClick={() => navigate("/signup-supabase")} size="lg" className="gradient-primary text-primary-foreground hover-glow px-8 py-6 text-lg font-semibold rounded-xl shadow-elegant transition-smooth">
               Get Started Free
             </Button>
-            <Button 
-              onClick={() => navigate("/signin-supabase")}
-              variant="outline"
-              size="lg"
-              className="border-2 border-primary/30 text-primary hover:bg-primary/10 px-8 py-6 text-lg font-semibold rounded-xl shadow-elegant transition-smooth"
-            >
+            <Button onClick={() => navigate("/signin-supabase")} variant="outline" size="lg" className="border-2 border-primary/30 text-primary hover:bg-primary/10 px-8 py-6 text-lg font-semibold rounded-xl shadow-elegant transition-smooth">
               Login
             </Button>
           </div>
@@ -71,8 +59,6 @@ const Landing = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Landing;
