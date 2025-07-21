@@ -10,6 +10,7 @@ import Community from "./pages/Community";
 import ExamPlanner from "./pages/ExamPlanner";
 import FlashcardGenerator from "./pages/FlashcardGenerator";
 import Index from "./pages/Index";
+import Landing from "./pages/Landing";
 import NotFound from "./pages/NotFound";
 import ProgressWall from "./pages/ProgressWall";
 import SignIn from "./pages/SignIn";
@@ -53,7 +54,8 @@ const App = () => (
         <Routes>
           <Route path="/signin-supabase" element={<SignInSupabase />} />
           <Route path="/signup-supabase" element={<SignUpSupabase />} />
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<ProtectedRoute><Index /></ProtectedRoute>} />
           <Route path="/community" element={<ProtectedRoute><Community /></ProtectedRoute>} />
           <Route path="/chat" element={<ProtectedRoute><ChatDashboard /></ProtectedRoute>} />
           <Route path="/flashcards" element={<ProtectedRoute><FlashcardGenerator /></ProtectedRoute>} />

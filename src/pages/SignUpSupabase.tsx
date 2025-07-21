@@ -9,7 +9,7 @@ export default function SignUpSupabase() {
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
-          providers={['google', 'github', 'email']}
+          providers={['google', 'github']}
           view="sign_up"
         />
       </div>

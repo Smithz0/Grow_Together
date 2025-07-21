@@ -10,7 +10,7 @@ export default function SignInSupabase() {
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
       if (data.user) {
-        navigate("/");
+        navigate("/home");
       }
     });
   }, [navigate]);
@@ -21,7 +21,7 @@ export default function SignInSupabase() {
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
-          providers={['google', 'github', 'email']}
+          providers={['google', 'github']}
         />
       </div>
     </div>
