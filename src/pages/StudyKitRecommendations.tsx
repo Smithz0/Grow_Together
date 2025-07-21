@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -32,7 +33,8 @@ export default function StudyKitRecommendations() {
   // In a real app, recommendations would be filtered by subject/goals
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 py-10 px-4 pt-16">
+      <Navbar />
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold mb-6 flex items-center gap-2 text-indigo-700">
           <BookOpen className="inline-block" /> StudyKit Recommendations

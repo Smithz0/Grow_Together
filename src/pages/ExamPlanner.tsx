@@ -108,7 +108,7 @@ const ExamPlanner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+    <div className="min-h-screen bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5 pt-16">
       <Navbar />
       <div className="container mx-auto px-4 py-8">
         

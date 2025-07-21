@@ -83,7 +83,7 @@ const ChatDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-16">
       <Navbar />
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-12 h-[calc(100vh-8rem)] gap-6">

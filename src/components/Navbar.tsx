@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { BarChart3, BookOpen, Calendar, ChevronDown, Layers, Menu, MessageCircle, Users, Video, X, Zap } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const anchorLinks = [
   { name: "Features", href: "#features", icon: BookOpen },
@@ -22,6 +22,24 @@ const studyTools = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Handler for anchor links
+  const handleAnchorClick = (e, href) => {
+    e.preventDefault();
+    const section = href.replace('#', '');
+    if (location.pathname === '/') {
+      // Already on home, scroll to section
+      const el = document.getElementById(section);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home and scroll after navigation
+      navigate('/', { state: { scrollTo: section } });
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/20">
@@ -43,6 +61,7 @@ const Navbar = () => {
                 key={item.name}
                 href={item.href}
                 className="flex items-center space-x-1 text-foreground hover:text-primary transition-smooth"
+                onClick={e => handleAnchorClick(e, item.href)}
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.name}</span>
@@ -54,7 +73,6 @@ const Navbar = () => {
                 className="flex items-center space-x-1 text-foreground hover:text-primary transition-smooth focus:outline-none"
                 onClick={() => setToolsOpen((open) => !open)}
                 onMouseEnter={() => setToolsOpen(true)}
-                onMouseLeave={() => setToolsOpen(false)}
                 type="button"
               >
                 <Layers className="h-4 w-4" />
@@ -65,7 +83,6 @@ const Navbar = () => {
                 <div
                   className="absolute left-0 mt-2 w-56 bg-white rounded shadow-lg py-2 z-50"
                   onMouseEnter={() => setToolsOpen(true)}
-                  onMouseLeave={() => setToolsOpen(false)}
                 >
                   {studyTools.map((item) => (
                     <Link
