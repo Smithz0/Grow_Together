@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { BarChart3, BookOpen, Calendar, ChevronDown, Layers, Menu, MessageCircle, Users, Video, X, Zap } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const anchorLinks = [
@@ -24,6 +24,21 @@ const Navbar = () => {
   const [toolsOpen, setToolsOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setToolsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   // Handler for anchor links
   const handleAnchorClick = (e, href) => {
@@ -68,7 +83,7 @@ const Navbar = () => {
               </a>
             ))}
             {/* Study Tools Dropdown */}
-            <div className="relative group">
+            <div className="relative group" ref={dropdownRef}>
               <button
                 className="flex items-center space-x-1 text-foreground hover:text-primary transition-smooth focus:outline-none"
                 onClick={() => setToolsOpen((open) => !open)}
@@ -83,6 +98,7 @@ const Navbar = () => {
                 <div
                   className="absolute left-0 mt-2 w-56 bg-white rounded shadow-lg py-2 z-50"
                   onMouseEnter={() => setToolsOpen(true)}
+                  onMouseLeave={() => setToolsOpen(false)}
                 >
                   {studyTools.map((item) => (
                     <Link
